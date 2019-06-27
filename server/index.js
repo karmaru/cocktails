@@ -30,3 +30,10 @@ app.post("/auth/register", authCtrl.register);
 app.post("/auth/login", authCtrl.login);
 app.get("/auth/current", authCtrl.current);
 app.post("/auth/logout", authCtrl.logout);
+app.get('/api/testSession', (req, res) => {
+  if (req.query.mentor) {
+    req.session.mentor = req.query.mentor
+  }
+  req.session.me = 'todd'
+  res.status(200).send(req.session)
+})

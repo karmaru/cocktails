@@ -1,3 +1,3 @@
 select *
 from users
-where email = ${email};
+where name = ${name};

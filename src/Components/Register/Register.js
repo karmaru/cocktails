@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { updateUser } from "../../redux/auth_reducer";
 
@@ -11,7 +11,8 @@ class Register extends Component {
     this.state = {
       email: '',
       password: '',
-      name: ''
+      name: '',
+      birthdate: ''
     };
   }
 
@@ -22,25 +23,29 @@ class Register extends Component {
   };
 
   register() {
-    const { name, email, password } = this.state;
+    const { name,birthdate, email, password } = this.state;
 
     axios
-      .post("/auth/register", { name, email, password })
+      .post("/auth/register", { name, email, password, birthdate })
       .then(res => {
         this.props.updateUser(res.data);
         this.props.history.push("/");
       })
       .catch(err => {
-        alert("User Already Exist Try Logging IN");
+        if (err === 409){
+        alert("User Already Exist Try Logging IN")}
+        else {
+          alert('you are too young')
+        }
       });
   }
 
   render() {
       console.log('from register', this.state)
       // console.log('from regis auth', state.authReducer.id)
-    // if (this.props.id) {
-    //   return <Redirect to="/dashboard" />;
-    // }
+    if (this.props.id) {
+      return <Redirect to="/dashboard" />;
+    }
     return (
       <div>
         <h1>Register</h1>
@@ -57,6 +62,13 @@ class Register extends Component {
           name="email"
           onChange={this.handleInput}
           value={this.state.email}
+        />
+        <input
+          type="date"
+          placeholder="Birthdate"
+          name="birthdate"
+          onChange={this.handleInput}
+          value={this.state.birthdate}
         />
         <input
           type="password"

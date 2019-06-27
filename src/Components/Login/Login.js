@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { updateUser } from "../../redux/auth_reducer";
 
@@ -21,17 +21,19 @@ class Login extends Component {
     });
   };
 
-  login() {
+  async login() {
     const { name, email, password } = this.state;
     console.log('from login component', this.state)
-    axios
-      .post("/auth/login", { name, email, password })
+    await axios
+      .post("/auth/login", { name, password })
       .then(res => {
         this.props.updateUser(res.data);
-        this.props.history.push("/");
+      })
+      .then(res => {
+        this.props.history.push("/dashboard");
       })
       .catch(err => {
-        alert("Please use a valid email and password");
+        alert("Please use a valid username and password");
       });
 
     this.setState({
@@ -40,6 +42,18 @@ class Login extends Component {
       password: ""
     });
   }
+
+//   logout() {
+//     axios.post('/api/logout')
+//     .then(() => {
+//       this.setState({
+//         user: {}
+//       })
+//     .then(res => {
+//         this.props.history.push("/");
+//     })  
+//     });
+//   }
 
   render() {
     console.log('login component', this.state, this.props)
@@ -56,13 +70,13 @@ class Login extends Component {
           onChange={this.handleInput}
           value={this.state.name}
         />
-        <input
+        {/* <input
           type="text"
           placeholder="Email"
           name="email"
           onChange={this.handleInput}
           value={this.state.email}
-        />
+        /> */}
         <input
           type="password"
           placeholder="Password"

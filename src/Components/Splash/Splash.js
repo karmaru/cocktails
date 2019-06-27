@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import martini from '../../Images/martini_logo.png'
 // import Register from '../Register/Register'
-import {Link, Redirect} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 import './Splash.css'
 

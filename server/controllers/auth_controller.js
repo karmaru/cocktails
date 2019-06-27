@@ -1,9 +1,17 @@
 const bcrypt = require("bcryptjs");
 
+// let bday = new Date('06-28-1972')
+// console.log('bday', bday)
+
 module.exports = {
     register: async (req, res) => {
+        // let bday = new Date(req.body.birthdate)
         const db = req.app.get("db");
-        const { name, email, password } = req.body;
+        
+        const { name, email, password,birthdate } = req.body;
+        const bday = new Date(birthdate)
+        bday.setDate( bday.getDate() + (365*21) )
+        var today = new Date;
         const { session } = req;
     
         let takenEmail = await db.auth.check_email({ email });
@@ -12,6 +20,10 @@ module.exports = {
         if (takenEmail) {
           return res.status(409).send("Email already exists");
         }
+        console.log('dates',today.getTime(), bday.getTime())
+        if ( (today.getTime() - bday.getTime()) < 0) {
+          return res.status(400).send(`You're too young to enter this site`)
+        }  
     
         let salt = bcrypt.genSaltSync(10);
         let hash = bcrypt.hashSync(password, salt);
@@ -26,10 +38,10 @@ module.exports = {
 
       login: async (req, res) => {
         const db = req.app.get("db");
-        const { email, password } = req.body;
+        const { name, password } = req.body;
         const { session } = req;
     
-        let user = await db.auth.get_user({ email });
+        let user = await db.auth.get_user({ name });
         
         user = user[0];
         console.log('from auth controller', user)
@@ -60,8 +72,9 @@ module.exports = {
       },
 
       logout: (req, res) => {
+        console.log('session before destroy', req.session)
         req.session.destroy();
-    
+        console.log('session after destroy', req.session)
         res.status(200).send("Logged Out");
       }
 }
