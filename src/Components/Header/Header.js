@@ -42,6 +42,7 @@ updateSearch() {
 let currState = this.state
   {this.props.updateDrink(currState)}
   console.log('from search button', this.state, this.props)
+  this.props.history.push('/searches')
 }
 
 render () {
