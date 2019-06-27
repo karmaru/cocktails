@@ -11,9 +11,9 @@ class Header extends Component {
     super(props)
 
     this.state = {
-      idDrink: '23423',
+      idDrink: '',
       search: '',
-      comments: 'sdfsdfdsfdfdfdfdf'
+      comments: ''
     }
 
     this.logout = this.logout.bind(this);
