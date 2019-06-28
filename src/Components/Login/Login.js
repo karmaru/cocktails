@@ -23,7 +23,7 @@ class Login extends Component {
 
   async login() {
     const { name, email, password } = this.state;
-    console.log('from login component', this.state)
+    // console.log('from login component', this.state)
     await axios
       .post("/auth/login", { name, password })
       .then(res => {
@@ -56,7 +56,7 @@ class Login extends Component {
 //   }
 
   render() {
-    console.log('login component', this.state, this.props)
+    // console.log('login component', this.state, this.props)
     if (this.props.id) {
       return <Redirect to="/dashboard" />;
     }

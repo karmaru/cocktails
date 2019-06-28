@@ -4,8 +4,8 @@ export default class Cocktail extends Component {
 
   render() {
     // let {idDrink, strDrink, strDrinkThumb} = this.state.cocktail
-    console.log('cocktail component', this.props)
-    console.log('session info', this.props)
+    // console.log('cocktail component', this.props)
+    // console.log('session info', this.props)
     let drink = this.props.cocktail
     return (
     //   <div style={{display: 'flex', height: '70vh', width: '50vw', border: '1px solid black'}}>

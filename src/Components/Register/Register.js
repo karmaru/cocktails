@@ -41,7 +41,7 @@ class Register extends Component {
   }
 
   render() {
-      console.log('from register', this.state)
+      // console.log('from register', this.state)
       // console.log('from regis auth', state.authReducer.id)
     if (this.props.id) {
       return <Redirect to="/dashboard" />;
@@ -85,7 +85,7 @@ class Register extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('register state', state)
+  // console.log('register state', state)
   return {
     id: state.authReducer.id,
     name: state.authReducer.name

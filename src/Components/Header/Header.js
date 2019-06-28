@@ -21,7 +21,7 @@ class Header extends Component {
   }
 
   logout() {
-    console.log(this.context)
+    // console.log(this.context)
     axios.post('/auth/logout')
     .then(
       () => {
@@ -41,13 +41,14 @@ class Header extends Component {
 updateSearch() {
 let currState = this.state
   {this.props.updateDrink(currState)}
-  console.log('from search button', this.state, this.props)
+  // console.log('from search button', this.state, this.props)
   this.props.history.push('/searches')
 }
 
 render () {
-  console.log('history', this.props)
-  console.log('this.state on header', this.state)
+  // console.log('Props on Header', this.props)
+  // console.log('this.state on header', this.state)
+  // console.log('session info header', )
     return (
         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100vw', backgroundColor: 'pink', height: '10vh'}}>
             <div style={{display: 'flex',align: 'left', justifyContent: 'flex-start', marginLeft: '20px'}}>
@@ -76,7 +77,7 @@ render () {
 }
 
 function mapStateToProps(state) {
-  console.log('drink state', state)
+  // console.log('drink state', state)
   return {
     idDrink: state.cocktailReducer.idDrink,
     search: state.cocktailReducer.search,

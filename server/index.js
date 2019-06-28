@@ -9,6 +9,7 @@ const app = express()
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env
 
 const authCtrl = require("./controllers/auth_controller");
+const commentCtrl = require("./controllers/comment_controller")
 
 massive(CONNECTION_STRING).then(db => {
   app.set('db', db)
@@ -30,6 +31,8 @@ app.post("/auth/register", authCtrl.register);
 app.post("/auth/login", authCtrl.login);
 app.get("/auth/current", authCtrl.current);
 app.post("/auth/logout", authCtrl.logout);
+
+app.get("/comments/read/:id", commentCtrl.read);
 // app.get('/api/testSession', (req, res) => {
 //   if (req.query.mentor) {
 //     req.session.mentor = req.query.mentor

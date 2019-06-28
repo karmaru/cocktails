@@ -11,7 +11,7 @@ const initialState = {
   const UPDATE_DRINKID = 'UPDATE_DRINKID';
   
   export function updateDrink(drink) {
-    console.log('action payload from reducer2', drink)
+    // console.log('action payload from reducer2', drink)
     return {
        
       type: UPDATE_DRINK,

@@ -7,7 +7,7 @@ module.exports = {
     register: async (req, res) => {
         // let bday = new Date(req.body.birthdate)
         const db = req.app.get("db");
-        
+console.log('from auth', req.body)
         const { name, email, password,birthdate } = req.body;
         const bday = new Date(birthdate)
         bday.setDate( bday.getDate() + (365*21) )

@@ -27,7 +27,7 @@ await axios.get('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list').t
     })
 })
 let check = this.state.ingredients.map(function(e) { return e.strIngredient1.toUpperCase(); }).indexOf(this.props.search.toUpperCase);
-console.log('check', check)
+// console.log('check', check)
 if (check != -1) {
     await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?i=${this.props.search}`).then(res => {
         this.setState({
@@ -45,15 +45,15 @@ if (check != -1) {
 async componentDidUpdate(previousProps) {
     if (previousProps.search != this.props.search) { 
         let check = this.state.ingredients.map(function(e) { return e.strIngredient1.toUpperCase(); })   .indexOf(this.props.search.toUpperCase);
-        console.log('check', check)
+        // console.log('check', check)
         if (check != -1) {
-            await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?i=${this.props.search}`).then(res => {
+            await axios.get(`https://www.thecocktaildb.com/api/json/v2/8673533/search.php?i=${this.props.search}`).then(res => {
             this.setState({
             cocktails: res.data.drinks
             })
         })} 
         else {
-            await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${this.props.search}`).then(res => {
+            await axios.get(`https://www.thecocktaildb.com/api/json/v2/8673533/search.php?s=${this.props.search}`).then(res => {
             this.setState({
             cocktails: res.data.drinks
             })
@@ -70,7 +70,7 @@ getDrink (idDrink)  {
 }  
 
 render () {
-    console.log('props from searches component', this.props, this.state)
+    // console.log('props from searches component', this.props, this.state)
     return (
     <div style={{display: 'flex', flexDirection: 'row', 
 	flexWrap: 'wrap',
@@ -93,7 +93,7 @@ render () {
 }
 
 function mapStateToProps(state) {
-    console.log('drink state', state)
+    // console.log('drink state', state)
     return {
       search: state.cocktailReducer.search
       // name: state.authReducer.name
