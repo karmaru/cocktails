@@ -7,6 +7,7 @@ import Splash from './Components/Splash/Splash'
 import Dashboard from './Components/Dashboard/Dashboard'
 import Searches from './Components/Searches/Searches'
 import Cocktail from './Components/Cocktail/Cocktail'
+import CommentAdd from './Components/CommentAdd/CommentAdd'
 
 export default (
   <Switch>    
@@ -17,6 +18,7 @@ export default (
     <Route path='/dashboard' component={Dashboard} />
     <Route path='/searches' component={Searches} />
     <Route path='/cocktail' component={Cocktail} />
+    <Route path='/postComment' component={CommentAdd} />
   </Switch>
 );
 

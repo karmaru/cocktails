@@ -1,7 +1,8 @@
 const initialState = {
     name: '',
     email: '',
-    id: 0
+    id: 0,
+    avatar: ''
   };
   
   const UPDATE_USER = "UPDATE_USER";
@@ -23,8 +24,8 @@ const initialState = {
   export default function authReducer(state = initialState, action) {
     switch (action.type) {
       case UPDATE_USER:
-        const { name, email, user_id } = action.payload;
-        return { ...state, name, email, id: user_id };
+        const { name, email, user_id, avatar } = action.payload;
+        return { ...state, name, email, id: user_id, avatar };
       case CLEAR_USER:
         return { ...state, ...initialState };
       default:

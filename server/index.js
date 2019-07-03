@@ -33,6 +33,7 @@ app.get("/auth/current", authCtrl.current);
 app.post("/auth/logout", authCtrl.logout);
 
 app.get("/comments/read/:id", commentCtrl.read);
+app.post("/comments/create", commentCtrl.create);
 // app.get('/api/testSession', (req, res) => {
 //   if (req.query.mentor) {
 //     req.session.mentor = req.query.mentor

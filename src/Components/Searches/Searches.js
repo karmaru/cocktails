@@ -20,21 +20,25 @@ class Searches extends Component {
   }
 
 async componentDidMount() {
-await axios.get('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list').then
+await axios.get('https://www.thecocktaildb.com/api/json/v2/8673533/list.php?i=list').then
 (res => {
     this.setState({
         ingredients: res.data.drinks
     })
 })
+
+
+
 let check = this.state.ingredients.map(function(e) { return e.strIngredient1.toUpperCase(); }).indexOf(this.props.search.toUpperCase);
 // console.log('check', check)
+
 if (check != -1) {
-    await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?i=${this.props.search}`).then(res => {
+    await axios.get(`https://www.thecocktaildb.com/api/json/v2/8673533/search.php?i=${this.props.search}`).then(res => {
         this.setState({
         cocktails: res.data.drinks
     })
 })} else {
-        await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${this.props.search}`).then(res => {
+        await axios.get(`https://www.thecocktaildb.com/api/json/v2/8673533/search.php?s=${this.props.search}`).then(res => {
             this.setState({
                 cocktails: res.data.drinks
             })
@@ -43,11 +47,18 @@ if (check != -1) {
 }
 
 async componentDidUpdate(previousProps) {
+    let grammarFunc = (str) => {
+        // | Code in Here!
+        return str.split(' ').map(sen => sen.charAt(0).toUpperCase() + sen.slice(1)).join(',')
+      }
     if (previousProps.search != this.props.search) { 
+        let combine = grammarFunc(this.props.search)
+        console.log('combine', this.props,combine)
         let check = this.state.ingredients.map(function(e) { return e.strIngredient1.toUpperCase(); })   .indexOf(this.props.search.toUpperCase);
         // console.log('check', check)
         if (check != -1) {
-            await axios.get(`https://www.thecocktaildb.com/api/json/v2/8673533/search.php?i=${this.props.search}`).then(res => {
+            // https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Dry_Vermouth,Gin,Anis
+            await axios.get(`https://www.thecocktaildb.com/api/json/v2/8673533/filter.php?i=${combine}`).then(res => {
             this.setState({
             cocktails: res.data.drinks
             })
@@ -70,7 +81,7 @@ getDrink (idDrink)  {
 }  
 
 render () {
-    // console.log('props from searches component', this.props, this.state)
+    console.log('props from searches component', this.props, this.state)
     return (
     <div style={{display: 'flex', flexDirection: 'row', 
 	flexWrap: 'wrap',

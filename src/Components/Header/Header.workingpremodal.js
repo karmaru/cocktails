@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import { updateDrink } from "../../redux/cocktail_reducer";
 
 
-
 class Header extends Component {
   constructor (props) {
     super(props)
@@ -14,9 +13,7 @@ class Header extends Component {
     this.state = {
       idDrink: '',
       search: '',
-      comments: '',
-      addModalShow: false,
-
+      comments: ''
     }
 
     this.logout = this.logout.bind(this);
@@ -66,13 +63,13 @@ render () {
             name="search"
             onChange={this.handleInput}
             value={this.state.name}
-            style={{width: '25vw', fontFamily: 'Lobster Two', fontSize: '30px', borderRadius: '10px', lineHeight: '30px'}}></input>
-            <button style={{marginLeft: '15px', width: '150px', height: '40px', fontFamily: 'Lobster Two', fontSize: '30px', borderRadius: '10px', lineHeight: '30px'}}
+            style={{width: '25vw', fontFamily: 'Lobster Two', fontSize: '30px', borderRadius: '10px'}}></input>
+            <button style={{marginLeft: '15px', width: '150px', height: '40px', fontFamily: 'Lobster Two', fontSize: '30px', borderRadius: '10px'}}
             onClick={this.updateSearch} 
             >Search</button>
             </div>
             <div style={{marginRight: '15px'}}>
-              <button  style={{marginLeft: '15px', width: '150px', height: '40px', fontFamily: 'Lobster Two', fontSize: '30px', borderRadius: '10px', lineHeight: '30px'}} onClick={this.logout}> Logout </button>
+              <button  style={{marginLeft: '15px', width: '150px', height: '40px', fontFamily: 'Lobster Two', fontSize: '30px', borderRadius: '10px'}} onClick={this.logout}> Logout </button>
             </div>
         </div>
     )

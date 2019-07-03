@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { updateUser } from "../../redux/auth_reducer";
 
 class Login extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       name: '',  
-      email: '',
       password: ''
     };
   }
@@ -22,17 +21,19 @@ class Login extends Component {
   };
 
   async login() {
-    const { name, email, password } = this.state;
+    console.log('props from modal', this.props)
+    const { name, password } = this.state;
     // console.log('from login component', this.state)
     await axios
       .post("/auth/login", { name, password })
       .then(res => {
         this.props.updateUser(res.data);
       })
-      .then(res => {
-        this.props.history.push("/dashboard");
-      })
+      .then(
+        this.props.logFinished()
+        )
       .catch(err => {
+        console.log('2222222', err)
         alert("Please use a valid username and password");
       });
 
@@ -57,9 +58,9 @@ class Login extends Component {
 
   render() {
     // console.log('login component', this.state, this.props)
-    if (this.props.id) {
-      return <Redirect to="/dashboard" />;
-    }
+    // if (this.props.id) {
+    //   return <Redirect to="/dashboard" />;
+    // }
     return (
       <div>
         <h1>Login</h1>
@@ -98,7 +99,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   { updateUser }
-)(Login);
+)(Login));

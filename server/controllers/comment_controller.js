@@ -33,17 +33,17 @@ module.exports = {
     //   },
 
 
-    // create: (req, res, next) => {
-    //     console.log(req.body)
-    //     const dbInstance = req.app.get('db');
-    //     const { user_id, drink_id, comment_id, comment } = req.body;
+    create: (req, res, next) => {
+        console.log('create state from comments controller', req.body)
+        const db = req.app.get('db');
+        const { user_id, drink_id, comment } = req.body;
     
-    //     dbInstance.createComment(req.body)
-    //       .then(() => res.sendStatus(200))
-    //       .catch(err => {
-    //         res.status(500).send({ errorMessage: "Something went wrong." });
-    //         console.log(err)
-    //       });
-    //   }
+        db.comments.createComment(req.body)
+          .then(() => res.sendStatus(200))
+          .catch(err => {
+            res.status(500).send({ errorMessage: "Something went wrong." });
+            console.log(err)
+          });
+      }
 
     }

@@ -1,4 +1,4 @@
-insert into comments (post_id, user_id, drink_id, comment)
-values (${post_id}, ${user_id}, ${idDrink}, ${comment});
+insert into posts (user_id, drink_id, comment)
+values (${user_id}, ${idDrink}, ${comment});
 
-select * from comments;
+select * from posts;

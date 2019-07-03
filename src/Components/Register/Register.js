@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { updateUser } from "../../redux/auth_reducer";
 
@@ -12,7 +11,8 @@ class Register extends Component {
       email: '',
       password: '',
       name: '',
-      birthdate: ''
+      birthdate: '',
+      avatar: ''
     };
   }
 
@@ -23,14 +23,17 @@ class Register extends Component {
   };
 
   register() {
-    const { name,birthdate, email, password } = this.state;
+    const { name,birthdate, email, password, avatar } = this.state;
 
     axios
-      .post("/auth/register", { name, email, password, birthdate })
+      .post("/auth/register", { name, email, password, birthdate, avatar })
       .then(res => {
-        this.props.updateUser(res.data);
-        this.props.history.push("/");
+        this.props.updateUser(res.data)
       })
+      .then(
+        this.props.logFinishedReg()
+          )
+        // this.props.history.push("/dashboard")
       .catch(err => {
         if (err === 409){
         alert("User Already Exist Try Logging IN")}
@@ -43,9 +46,9 @@ class Register extends Component {
   render() {
       // console.log('from register', this.state)
       // console.log('from regis auth', state.authReducer.id)
-    if (this.props.id) {
-      return <Redirect to="/dashboard" />;
-    }
+    // if (this.props.id) {
+    //   return <Redirect to="/dashboard" />;
+    // }
     return (
       <div>
         <h1>Register</h1>
@@ -76,6 +79,13 @@ class Register extends Component {
           name="password"
           onChange={this.handleInput}
           value={this.state.password}
+        />
+        <input
+          type="text"
+          placeholder="Avatar URL"
+          name="avatar"
+          onChange={this.handleInput}
+          value={this.state.avatar}
         />
         <button onClick={() => this.register()}>Register</button>
         

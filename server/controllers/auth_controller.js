@@ -8,7 +8,7 @@ module.exports = {
         // let bday = new Date(req.body.birthdate)
         const db = req.app.get("db");
 console.log('from auth', req.body)
-        const { name, email, password,birthdate } = req.body;
+        const { name, email, password,birthdate,avatar } = req.body;
         const bday = new Date(birthdate)
         bday.setDate( bday.getDate() + (365*21) )
         var today = new Date;
@@ -28,7 +28,7 @@ console.log('from auth', req.body)
         let salt = bcrypt.genSaltSync(10);
         let hash = bcrypt.hashSync(password, salt);
     
-        let user = await db.auth.add_user({ name, email, password: hash });
+        let user = await db.auth.add_user({ name, email, password: hash, avatar });
     
         user = user[0];
         session.user = user;
@@ -72,9 +72,9 @@ console.log('from auth', req.body)
       },
 
       logout: (req, res) => {
-        console.log('session before destroy', req.session)
+        // console.log('session before destroy', req.session)
         req.session.destroy();
-        console.log('session after destroy', req.session)
+        // console.log('session after destroy', req.session)
         res.status(200).send("Logged Out");
       }
 }
