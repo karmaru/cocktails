@@ -6,11 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 
 export default class LoginModal extends Component{
-    constructor(props) {
-        super(props)
-    }
-
-
+    
 
     render() {
         return (

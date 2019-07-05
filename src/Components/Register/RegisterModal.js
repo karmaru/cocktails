@@ -6,12 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 
 export default class RegisterModal extends Component{
-    constructor(props) {
-        super(props)
-    }
-
-
-
+  
     render() {
         return (
           <Modal

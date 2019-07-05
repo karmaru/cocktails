@@ -1,0 +1,35 @@
+.boxes_Dash {
+    display: flex;
+}
+
+.box_Dash {
+    display: flex;
+    border: 1px solid black;
+    height: 80vh;
+    width: 45vw;
+    justify-content: center;
+    margin-top: 3vh;
+    margin-left: 3vw;
+    box-shadow: 0px 30px 40px rgba(0,0,0,.4);
+}
+
+
+@media screen and (max-width: 950px) {
+
+.boxes_Dash {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.box_Dash {
+    width: 95vw;
+    margin: 5%;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    overflow: scroll;
+}
+
+}

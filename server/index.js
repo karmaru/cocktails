@@ -34,11 +34,5 @@ app.post("/auth/logout", authCtrl.logout);
 
 app.get("/comments/read/:id", commentCtrl.read);
 app.post("/comments/create", commentCtrl.create);
-// app.get('/api/testSession', (req, res) => {
-//   if (req.query.mentor) {
-//     req.session.mentor = req.query.mentor
-//   }
-//   req.session.me = 'todd'
-//   res.status(200).send(req.session)
-// }
-// )
+app.put("/comments/update/:id", commentCtrl.update);
+app.delete("/comments/delete/:id", commentCtrl.delete);

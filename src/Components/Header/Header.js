@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import './Header.css'
 import martini from '../../Images/martini_logo.png'
 import axios from 'axios'
-import {Link, Redirect, withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import { connect } from "react-redux";
 import { updateDrink } from "../../redux/cocktail_reducer";
 
@@ -43,8 +44,7 @@ class Header extends Component {
 
 updateSearch() {
 let currState = this.state
-  {this.props.updateDrink(currState)}
-  // console.log('from search button', this.state, this.props)
+  this.props.updateDrink(currState)
   this.props.history.push('/searches')
 }
 
@@ -53,26 +53,25 @@ render () {
   // console.log('this.state on header', this.state)
   // console.log('session info header', )
     return (
-        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100vw', backgroundColor: 'pink', height: '10vh'}}>
+        <div className='navbar_Hdr'>
           
-            <div style={{display: 'flex',align: 'left', justifyContent: 'flex-start', marginLeft: '20px'}}>
-            <img style={{justifyContent: 'center', alignItems: 'center', height: '7vh'}} src={martini} alt=''/>
-            <span style={{fontFamily: 'Lobster Two', fontSize: '40px', justifyContent: 'center', alignItems: 'center'}}>Liquor Lab</span>
+            <div
+             style={{display: 'flex',align: 'left', justifyContent: 'flex-start'}}
+             >
+            <img className='logo_Hdr' src={martini} alt=''/>
+            <span className='title_Hdr'>Liquor Lab</span>
             </div>
-            <div style={{display: 'flex', marginRight: '100px'}}>  
-            <input 
-            type="text"
-            // placeholder="search"
-            name="search"
-            onChange={this.handleInput}
-            value={this.state.name}
-            style={{width: '25vw', fontFamily: 'Lobster Two', fontSize: '30px', borderRadius: '10px', lineHeight: '30px'}}></input>
-            <button style={{marginLeft: '15px', width: '150px', height: '40px', fontFamily: 'Lobster Two', fontSize: '30px', borderRadius: '10px', lineHeight: '30px'}}
-            onClick={this.updateSearch} 
-            >Search</button>
-            </div>
-            <div style={{marginRight: '15px'}}>
-              <button  style={{marginLeft: '15px', width: '150px', height: '40px', fontFamily: 'Lobster Two', fontSize: '30px', borderRadius: '10px', lineHeight: '30px'}} onClick={this.logout}> Logout </button>
+              <div className='search_Hdr'>  
+              <input className='input_Hdr'
+              type="text"
+              name="search"
+              onChange={this.handleInput}
+              value={this.state.name}>
+              </input>
+              <button className='button_Hdr' onClick={this.updateSearch}>Search</button>
+              </div>
+            <div>
+              <button  className='button_Hdr' onClick={this.logout}> Logout </button>
             </div>
         </div>
     )
@@ -97,21 +96,3 @@ export default withRouter(connect(
 )(Header));
 
 
-let styles = {
-  header: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      padding: 20,
-      alignItems: 'center'
-  },
-  logo: {
-      flex: 4,
-      display: 'flex',
-      justifyContent: 'flex-start'
-  },
-  navbar: {
-      flex: 1,
-      display: 'flex',
-      justifyContent: 'space-between'
-  }
-}

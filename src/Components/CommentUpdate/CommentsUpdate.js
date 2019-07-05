@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { updateUser } from "../../redux/auth_reducer";
+import {withRouter} from 'react-router-dom'
 
 class CommentsUpdate extends Component {
   constructor(props) {
@@ -33,15 +34,22 @@ class CommentsUpdate extends Component {
     });
   };
 
-  register() {
-    const { name,birthdate, email, password } = this.state;
+  submit() {
+    const { postId, comment} = this.state;
 
     axios
-      .post("/auth/register", { name, email, password, birthdate })
+      .put(`/comments/update/${postId}`, { comment })
       .then(res => {
-        this.props.updateUser(res.data)
+          console.log('after comment update commentsupdate', this.state)
+        // this.props.updateUser(res.data)
       })
-   // this.props.history.push("/dashboard")
+      .then(
+          this.props.flipUpdate()
+      )
+      .then(
+        this.props.logFinished()
+        )
+   this.props.history.push("/dashboard")
   }
 
   render() {
@@ -50,7 +58,7 @@ class CommentsUpdate extends Component {
     // if (this.props.id) {
     //   return <Redirect to="/dashboard" />;
     // }
-    console.log('from passed props commentsupdate', this.props, this.state)
+    // console.log('from passed props commentsupdate', this.props, this.state)
     return (
       <div>
         <h1>Comment</h1>
@@ -62,7 +70,7 @@ class CommentsUpdate extends Component {
           value={this.state.comment}
         />
         
-        <button onClick={() => this.register()}>Save</button>
+        <button onClick={() => this.submit()}>Save</button>
         
       </div>
     );
@@ -78,7 +86,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   { updateUser }
-)(CommentsUpdate);
+)(CommentsUpdate));

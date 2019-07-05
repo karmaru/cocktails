@@ -1,0 +1,118 @@
+.navbar_Hdr {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    background-color: pink;
+    height: 10vh;
+    padding: 20px;
+}
+
+.logo_Hdr {
+    justify-content: center;
+    align-items: center;
+    height: 7vh;
+    /* float: left; */
+    /* margin-left: 20px; */
+}
+
+.title_Hdr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 7vh;
+    /* float: left; */
+    font-family: Lobster Two;
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+.input_Hdr {
+    display: flex;
+    color: black;
+    text-decoration: none;
+    font-family: Lobster Two;
+    font-size: 30px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 250px;
+    border-radius: 10px;  
+    /* height: 50px; */
+    margin: 20px;
+    display: flex;
+    line-height: 30px;
+    text-align: left;
+    text-justify: auto;
+}
+
+.button_Hdr {
+    color: black;
+    text-decoration: none;
+    font-family: Lobster Two;
+    font-size: 30px;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    width: 100px;
+    border-radius: 10px;
+}
+
+.search_Hdr {
+    display: flex;
+}
+
+
+
+@media screen and (max-width: 950px) {
+
+.wrap_Hdr {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 80vh;
+    align-items: center;
+    align-content: center;
+  } 
+
+.navbar_Hdr {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    background-color: pink;
+    height: 15vh;
+}
+
+.button_Hdr {
+    width: 50px;
+    height: 30px;
+    font-size: 10px;
+    margin: 1px;
+}
+
+.input_Hdr {
+    width: 200px;
+    font-size: 25px;
+    margin: 10px;
+    height: 40px;
+    line-height: 40px;
+    text-justify: auto;
+    padding: 0;
+}
+
+
+.title_Hdr {
+    display: none;
+}
+
+.search_Hdr {
+    flex-direction: column;
+    margin: 0;
+    align-items: center;
+}
+
+}

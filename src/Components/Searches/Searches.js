@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios'
-import {Link, Redirect, withRouter} from 'react-router-dom'
+import './Searches.css'
+import {withRouter} from 'react-router-dom'
 import { connect } from "react-redux";
 import { updateDrink, updateDrinkId } from "../../redux/cocktail_reducer";
 
@@ -20,8 +21,8 @@ class Searches extends Component {
   }
 
 async componentDidMount() {
-await axios.get('https://www.thecocktaildb.com/api/json/v2/8673533/list.php?i=list').then
-(res => {
+await axios.get('https://www.thecocktaildb.com/api/json/v2/8673533/list.php?i=list').then(res =>
+    {
     this.setState({
         ingredients: res.data.drinks
     })
@@ -30,10 +31,10 @@ await axios.get('https://www.thecocktaildb.com/api/json/v2/8673533/list.php?i=li
 
 
 let check = this.state.ingredients.map(function(e) { return e.strIngredient1.toUpperCase(); }).indexOf(this.props.search.toUpperCase);
-// console.log('check', check)
+console.log('check', check)
 
-if (check != -1) {
-    await axios.get(`https://www.thecocktaildb.com/api/json/v2/8673533/search.php?i=${this.props.search}`).then(res => {
+if (check !== -1) {
+    await axios.get(`https://www.thecocktaildb.com/api/json/v2/8673533/filter.php?i=${this.props.search}`).then(res => {
         this.setState({
         cocktails: res.data.drinks
     })
@@ -48,17 +49,16 @@ if (check != -1) {
 
 async componentDidUpdate(previousProps) {
     let grammarFunc = (str) => {
-        // | Code in Here!
         return str.split(' ').map(sen => sen.charAt(0).toUpperCase() + sen.slice(1)).join(',')
       }
-    if (previousProps.search != this.props.search) { 
+    if (previousProps.search !== this.props.search) { 
         let combine = grammarFunc(this.props.search)
         console.log('combine', this.props,combine)
-        let check = this.state.ingredients.map(function(e) { return e.strIngredient1.toUpperCase(); })   .indexOf(this.props.search.toUpperCase);
-        // console.log('check', check)
-        if (check != -1) {
+        let check = this.state.ingredients.map(function(e) { return e.strIngredient1.toUpperCase()}).indexOf(this.props.search.toUpperCase);
+        console.log('check2', check)
+        if (check !== -1) {
             // https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Dry_Vermouth,Gin,Anis
-            await axios.get(`https://www.thecocktaildb.com/api/json/v2/8673533/filter.php?i=${combine}`).then(res => {
+            await axios.get(`https://www.thecocktaildb.com/api/json/v2/8673533/filter.php?i=${this.props.search}`).then(res => {
             this.setState({
             cocktails: res.data.drinks
             })
@@ -76,21 +76,18 @@ getDrink (idDrink)  {
     this.setState({
         drinkID: idDrink
     })
-    {this.props.updateDrinkId(idDrink)}
+    this.props.updateDrinkId(idDrink)
     this.props.history.push('/dashboard')
 }  
 
 render () {
     console.log('props from searches component', this.props, this.state)
     return (
-    <div style={{display: 'flex', flexDirection: 'row', 
-	flexWrap: 'wrap',
-	justifyContent: 'space-between',
-	alignContent: 'space-between'}}>
+    <div className='all_Search'>
     {this.state.cocktails.map(drinks => {
         return (
-            <div onClick={() => this.getDrink(drinks.idDrink)} style={{ flexDirection: 'row',width: '20vw', height: '20vh', border: '1px solid red', margin: '10px 20px', justifyContent: 'center', alignContent: 'center'}} key={drinks.idDrink}>
-                <img style={{height: '10vh', width: '10vw', objectFit: 'contain', margin: '10px', alignItems: 'center', justifyContent: 'center'}}src={drinks.strDrinkThumb} alt=''/>
+            <div onClick={() => this.getDrink(drinks.idDrink)} className='container_Search' key={drinks.idDrink}>
+                <img className='img_Search' src={drinks.strDrinkThumb} alt=''/>
                 <div>
                 <h5>{drinks.strDrink}</h5>
                 </div>

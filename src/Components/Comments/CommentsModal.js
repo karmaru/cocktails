@@ -6,11 +6,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 
 export default class CommentsModal extends Component{
-    constructor(props) {
-        super(props)
-    }
-
-
 
     render() {
         console.log('props from comments modal', this.props)
@@ -28,7 +23,7 @@ export default class CommentsModal extends Component{
             </Modal.Header>
             <Modal.Body>
               <div className='container'>
-                  <CommentsUpdate onHide={this.props.onHide} logFinished={this.props.logFinished} userId={this.props.userId} postId={this.props.postId} drinkId={this.props.drinkId} newComment={this.props.comment}/>
+                  <CommentsUpdate onHide={this.props.onHide} logFinished={this.props.logFinished} userId={this.props.userId} postId={this.props.postId} drinkId={this.props.drinkId} newComment={this.props.comment} flipUpdate={this.props.flipUpdate} delete={this.props.delete}/>
                   {/* {console.log('child',  this.child)} */}
               </div>
             </Modal.Body>

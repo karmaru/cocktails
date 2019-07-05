@@ -9,29 +9,36 @@ module.exports = {
         })
     },
 
-    // getMessage: (req, res) => {
-    //     const db = req.app.get('db');
-    //     const { id } = req.params;
+    update: (req, res) => {
+        const db = req.app.get("db");
+        console.log('comment controller req.params', req.params, req.body)
+        const { comment} = req.body;
+        const { id } = req.params;
     
-    //     db.get_message([id])
-    //       .then(messages => {
-    //         res.status(200).send(messages[0]);
-    //       })
-    //       .catch(err => {
-    //         res.status(500).send(err);
-    //       });
-    //   },
+        db.comments.updateComment({
+          id,
+          comment
+        })
+        .then(() => res.status(200).send(comment))
+        .catch(err => {
+            res.status(500).send({ errorMessage: "Something went wrong on update." });
+            console.log(err)
+          });
+      },
 
-    // current: (req, res) => {
-    //     const { user } = req.session;
-    //     // console.log(user);
-    //     if (user) {
-    //       return res.status(200).send(user);
-    //     } else {
-    //       res.status(400).send("User not found");
-    //     }
-    //   },
-
+    delete: (req, res) => {
+    const db = req.app.get('db');
+    const { id } = req.params;
+    const {drink_id} = req.body;
+    console.log('req.param from delete', req.params, req.body)
+    db.comments.deleteComment({id, drink_id})
+        .then(messages => {
+        res.status(200).send(messages);
+        })
+        .catch(err => {
+        res.status(500).send(err);
+        });
+    },
 
     create: (req, res, next) => {
         console.log('create state from comments controller', req.body)
@@ -45,5 +52,4 @@ module.exports = {
             console.log(err)
           });
       }
-
     }
