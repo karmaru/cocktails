@@ -44,7 +44,7 @@
 	content: '';
 	position: absolute;
 	left: 0;
-	top: 50%;
+	top: 25%;
 	width: 0;
 	height: 0;
 	border: 33px solid transparent;
@@ -71,8 +71,23 @@
 @media screen and (max-width: 950px) {
 
 .button {
-    width: 10px;
-    font-size: 50px;
+    width: 100px;
+    font-size: 20px;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 25%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-right-color: pink;
+	border-left: 0;
+	border-top: 0;
+	margin-top: -10px;
+	margin-left: -20px;
 }
 
 }

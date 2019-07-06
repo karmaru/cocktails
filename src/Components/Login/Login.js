@@ -21,7 +21,7 @@ class Login extends Component {
   };
 
   async login() {
-    console.log('props from modal', this.props)
+    // console.log('props from modal', this.props)
     const { name, password } = this.state;
     // console.log('from login component', this.state)
     await axios
@@ -33,7 +33,7 @@ class Login extends Component {
         this.props.logFinished()
         )
       .catch(err => {
-        console.log('2222222', err)
+        // console.log('2222222', err)
         alert("Please use a valid username and password");
       });
 

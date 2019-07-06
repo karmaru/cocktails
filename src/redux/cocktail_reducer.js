@@ -22,7 +22,7 @@ const initialState = {
   }
 
   export function updateDrinkId(drink) {
-    console.log('action payload from reducer', drink)
+    // console.log('action payload from reducer', drink)
     return {
       type: UPDATE_DRINKID,
       payload: drink

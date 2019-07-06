@@ -51,11 +51,12 @@ async componentDidUpdate(previousProps) {
     let grammarFunc = (str) => {
         return str.split(' ').map(sen => sen.charAt(0).toUpperCase() + sen.slice(1)).join(',')
       }
+
     if (previousProps.search !== this.props.search) { 
         let combine = grammarFunc(this.props.search)
         console.log('combine', this.props,combine)
-        let check = this.state.ingredients.map(function(e) { return e.strIngredient1.toUpperCase()}).indexOf(this.props.search.toUpperCase);
-        console.log('check2', check)
+        let check = this.state.ingredients.map(function(e) { return e.strIngredient1.toUpperCase()}).indexOf(this.props.search);
+        console.log('check2', check, this.state)
         if (check !== -1) {
             // https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Dry_Vermouth,Gin,Anis
             await axios.get(`https://www.thecocktaildb.com/api/json/v2/8673533/filter.php?i=${this.props.search}`).then(res => {
@@ -82,6 +83,7 @@ getDrink (idDrink)  {
 
 render () {
     console.log('props from searches component', this.props, this.state)
+    // console.log('redux', reduxState)
     return (
     <div className='all_Search'>
     {this.state.cocktails.map(drinks => {

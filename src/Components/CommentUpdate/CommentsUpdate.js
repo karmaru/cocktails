@@ -24,7 +24,7 @@ class CommentsUpdate extends Component {
     postId: this.props.postId,
     drinkId: this.props.drinkId
         });
-        console.log('state from commentsupdate', this.props, this.state)
+        // console.log('state from commentsupdate', this.props, this.state)
     }
    
 
@@ -40,7 +40,7 @@ class CommentsUpdate extends Component {
     axios
       .put(`/comments/update/${postId}`, { comment })
       .then(res => {
-          console.log('after comment update commentsupdate', this.state)
+          // console.log('after comment update commentsupdate', this.state)
         // this.props.updateUser(res.data)
       })
       .then(

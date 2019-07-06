@@ -19,7 +19,7 @@ class CommentAdd extends Component {
         idDrink: this.props.idDrink,
         user_id: this.props.user_id
     })
-    console.log('props from CDM of commentadd', this.props)
+    // console.log('props from CDM of commentadd', this.props)
   }
 
 
@@ -31,11 +31,11 @@ class CommentAdd extends Component {
 
   submit() {
     const { idDrink, comment, user_id } = this.state;
-    console.log('this.state from commentadd', this.state)
+    // console.log('this.state from commentadd', this.state)
     axios
       .post("/comments/create", {comment, idDrink, user_id})
       .then(res => {
-          console.log('set comments commentadd', res.data)
+          // console.log('set comments commentadd', res.data)
           this.props.history.push("/dashboard")
         // this.setState({comments: res.data})
       })
@@ -56,7 +56,7 @@ class CommentAdd extends Component {
     // if (this.props.id) {
     //   return <Redirect to="/dashboard" />;
     // }
-    console.log('props from commentsUpdate', this.state)
+    // console.log('props from commentsUpdate', this.state)
     return (
       <div>
         <h1>Register</h1>

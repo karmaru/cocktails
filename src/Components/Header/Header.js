@@ -48,10 +48,26 @@ let currState = this.state
   this.props.history.push('/searches')
 }
 
+// onKey(e) {
+//   console.log(e, window.keyCode)
+//   if (e.keyCode == 13) {
+//         console.log("Enter Pressed");
+//       }
+    
+// }
+
+
+
 render () {
-  // console.log('Props on Header', this.props)
-  // console.log('this.state on header', this.state)
-  // console.log('session info header', )
+ 
+var input1 = document.getElementById("myInput");
+if (input1){
+input1.addEventListener("keydown", event => {
+  if (event.keyCode === 13) {
+    document.getElementById("myBtn").click();
+  }
+})};
+
     return (
         <div className='navbar_Hdr'>
           
@@ -66,9 +82,12 @@ render () {
               type="text"
               name="search"
               onChange={this.handleInput}
-              value={this.state.name}>
+              value={this.state.name}
+              id="myInput"
+              // onKeyDown={(e) => this.onKey(e)}
+              >
               </input>
-              <button className='button_Hdr' onClick={this.updateSearch}>Search</button>
+              <button id='myBtn' className='button_Hdr' onClick={this.updateSearch}>Search</button>
               </div>
             <div>
               <button  className='button_Hdr' onClick={this.logout}> Logout </button>

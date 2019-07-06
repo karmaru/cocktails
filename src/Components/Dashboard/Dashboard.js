@@ -29,7 +29,7 @@ await axios.get(`https://www.thecocktaildb.com/api/json/v2/8673533/random.php`).
     this.state.cocktail.map(drink => {
       return this.props.updateDrinkId(drink.idDrink)
     })
-    console.log('drinkId', this.state)
+    // console.log('drinkId', this.state)
 })}
 else {
     await axios.get(`https://www.thecocktaildb.com/api/json/v2/8673533/lookup.php?i=${this.props.idDrink}`).then(res => {
@@ -44,8 +44,8 @@ else {
 // render () {
 
 render() {
-    console.log('dashboard state', this.state.cocktail)
-    console.log('dashboard props', this.props)
+    // console.log('dashboard state', this.state.cocktail)
+    // console.log('dashboard props', this.props)
     return (
       <div className='boxes_Dash'style={{display: 'flex'}}>
           <div className='box_Dash'>

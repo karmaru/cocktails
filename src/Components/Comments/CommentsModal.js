@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 export default class CommentsModal extends Component{
 
     render() {
-        console.log('props from comments modal', this.props)
+        // console.log('props from comments modal', this.props)
         return (
           <Modal
             {...this.props}

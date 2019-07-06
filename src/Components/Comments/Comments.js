@@ -32,7 +32,7 @@ class Comments extends Component {
   async componentDidMount() {
     
     await axios.get(`/comments/read/${this.props.idDrink}`).then(res => {
-        console.log('res from comments call', res.data, this.state)
+        // console.log('res from comments call', res.data, this.state)
         this.setState({
         comments: res.data
         });
@@ -40,11 +40,11 @@ class Comments extends Component {
 }
 
 async componentDidUpdate(previousProps, previousState) {
-  console.log('props from componentdidupdate comments', this.props)
+  // console.log('props from componentdidupdate comments', this.props)
   if (previousState.update !== this.state.update) { 
-    console.log('block ran', this.state)
+    // console.log('block ran', this.state)
   await axios.get(`/comments/read/${this.props.idDrink}`).then(res => {
-      console.log('res from comments call', res.data, this.state)
+      // console.log('res from comments call', res.data, this.state)
       this.setState({
       comments: res.data,
       update: false
@@ -95,7 +95,7 @@ async componentDidUpdate(previousProps, previousState) {
     return (
     
     <div style={{fontFamily: 'Lobster Two', fontSize: '30px', margin: '20px', overflow: 'scroll'}}>
-      <div className='head_comm'>
+      <div style={styles.head_comm}>
         <h4>User Comments</h4>
         <Link to='/postComment' ><button className='button'>Add Comment</button></Link> 
       </div>  
@@ -103,13 +103,13 @@ async componentDidUpdate(previousProps, previousState) {
             <hr/>
           
     {this.state.comments.map(posts => {
-        console.log('comments compare',this.props.id,posts.user_id, posts )
+        // console.log('comments compare',this.props.id,posts.user_id, posts )
         if (this.props.id === posts.user_id) { 
         return (
           <ButtonToolbar>
             <div className='comment_comm'>
               <div className='comments_comm'>
-                  <img style={{height: '6vh', width: '6vw', objectFit: 'contain'}} src={posts.avatar} alt=''/>
+                  <img style={styles.img_comm} src={posts.avatar} alt=''/>
                   <h5>{posts.name}</h5>
                   </div>
                   <div className='speech-bubble'>
@@ -117,10 +117,14 @@ async componentDidUpdate(previousProps, previousState) {
               </div>
               {/* <br/> */}
             <div>
-            <button  style={{marginLeft: '15px', width: '50px', height: '30px', fontFamily: 'Lobster Two', fontSize: '14px', borderRadius: '10px'}} onClick={() => this.setState({addModalShow: true})}>edit</button>
+
+            <button  style={styles.btn} onClick={() => this.setState({addModalShow: true})}>edit</button>
+
             <CommentsModal className="openmodal"
             show={this.state.addModalShow} onHide={addModalClose} logFinished={postFinished} userId={posts.user_id} postId={posts.post_id} drinkId={posts.drink_id} comment={posts.comment} flipUpdate={flipUpdate} deleteComment={deleteComment}/>
-            <button  style={{marginLeft: '15px', width: '50px', height: '30px', fontFamily: 'Lobster Two', fontSize: '14px', borderRadius: '10px'}} onClick={() => deleteComment(posts.post_id, posts.drink_id)}>delete</button>
+
+            <button  style={styles.btn} onClick={() => deleteComment(posts.post_id, posts.drink_id)}>delete</button>
+
             </div>
             </div> 
          </ButtonToolbar>
@@ -130,7 +134,7 @@ async componentDidUpdate(previousProps, previousState) {
         <div>
             <div className='comment_comm'>
                 <div className='comments_comm'>
-                <img style={{height: '6vh', width: '6vw', objectFit: 'contain'}} src={posts.avatar} alt=''/>
+                <img style={styles.img_comm} src={posts.avatar} alt=''/>
                 <h5>{posts.name}</h5>
                 </div>
                 <div className='speech-bubble'>
@@ -158,7 +162,7 @@ async componentDidUpdate(previousProps, previousState) {
 }
 
 function mapStateToProps(state) {
-  console.log('drink state', state)
+  // console.log('drink state', state)
   return {
     idDrink: state.cocktailReducer.idDrink,
     name: state.authReducer.name,
@@ -173,3 +177,28 @@ export default withRouter(connect(
 // state => state
   { updateDrink, updateUser}
 )(Comments));
+
+let styles = {
+  btn: {
+    marginLeft: '15px',
+    width: '50px',
+    height: '30px',
+    fontFamily: 'Lobster Two',
+    fontSize: '14px',
+    borderRadius: '10px'
+  },
+  img_comm: {
+    height: '6vh',
+    width: '6vw',
+    objectFit: 'contain'
+  },
+  head_comm: {
+    display: 'flex',
+    fontFamily: 'Lobster Two',
+    fontSize: '30px',
+    margin: '20px',
+    justifyContent: 'space-between',
+    alignContent: 'center',
+    alignItems: 'center'
+  }
+}
