@@ -10,7 +10,7 @@ export default class RegisterModal extends Component{
     render() {
         return (
           <Modal
-            // {...this.props}
+            {...this.props}
             size="sm"
             aria-labelledby="contained-modal-title-vcenter"
             centered

@@ -33,17 +33,20 @@ await axios.get('https://www.thecocktaildb.com/api/json/v2/8673533/list.php?i=li
 let check = this.state.ingredients.map(function(e) { return e.strIngredient1.toUpperCase(); }).indexOf(this.props.search.toUpperCase);
 console.log('check', check)
 
-if (check !== -1) {
+if (check === -1) {
     await axios.get(`https://www.thecocktaildb.com/api/json/v2/8673533/filter.php?i=${this.props.search}`).then(res => {
         this.setState({
         cocktails: res.data.drinks
     })
-})} else {
-        await axios.get(`https://www.thecocktaildb.com/api/json/v2/8673533/search.php?s=${this.props.search}`).then(res => {
-            this.setState({
-                cocktails: res.data.drinks
-            })
-            })
+})} else if (check !== -1){
+        // await axios.get(`https://www.thecocktaildb.com/api/json/v2/8673533/filter.php?i=${this.props.search}`).then(res => {
+        //     this.setState({
+        //         cocktails: res.data.drinks
+        //     })
+        //     })
+        } else {
+        alert('That search returned no results')
+
         }
 }
 

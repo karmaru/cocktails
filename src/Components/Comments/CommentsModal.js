@@ -18,12 +18,12 @@ export default class CommentsModal extends Component{
           >
             <Modal.Header closeButton>
               <Modal.Title id="contained-modal-title-vcenter">
-                Add Comment
+                Comments
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <div className='container'>
-                  <CommentsUpdate onHide={this.props.onHide} logFinished={this.props.logFinished} userId={this.props.userId} postId={this.props.postId} drinkId={this.props.drinkId} newComment={this.props.comment} flipupdate={this.props.flipupdate} delete={this.props.delete}/>
+                  <CommentsUpdate onHide={this.props.onHide} logFinished={this.props.logFinished} userId={this.props.userId} postId={this.props.postId} drinkId={this.props.drinkId} newComment={this.props.comment} flipUpdate={this.props.flipUpdate} delete={this.props.delete}/>
                   {/* {console.log('child',  this.child)} */}
               </div>
             </Modal.Body>

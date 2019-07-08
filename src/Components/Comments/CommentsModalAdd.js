@@ -21,7 +21,7 @@ export default class CommentsModalAdd extends Component{
             </Modal.Header>
             <Modal.Body>
               <div className='container'>
-                  <CommentAdd onHide={this.props.onHide} logFinished={this.props.logFinished} flipupdate={this.props.flipupdate}/>
+                  <CommentAdd onHide={this.props.onHide} postFinished={this.props.postFinished} flipUpdate={this.props.flipUpdate}/>
               </div>
             </Modal.Body>
             <Modal.Footer>

@@ -3,6 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { addComment } from "../../redux/cocktail_reducer";
 import './CommentsAdd.css'
+import { withRouter } from "react-router-dom";
 
 class CommentAdd extends Component {
   constructor() {
@@ -36,16 +37,17 @@ class CommentAdd extends Component {
     axios
       .post("/comments/create", {comment, idDrink, user_id})
       .then(
-        this.props.flipupdate()
+        this.props.flipUpdate()
     )
     .then(
-      this.props.logFinished()
+      this.props.postFinished()
       )
-      .then(res => {
-          // console.log('set comments commentadd', res.data)
-          this.props.history.push("/dashboard")
-        // this.setState({comments: res.data})
-      })
+      // this.props.history.push("/dashboard")
+      // .then(
+      //     // console.log('set comments commentadd', res.data)
+      //     this.props.history.push("/dashboard")
+      //   // this.setState({comments: res.data})
+      // )
     //   .then(
     //     this.props.logFinishedReg()
     //       )
@@ -89,7 +91,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   {addComment}
-)(CommentAdd);
+)(CommentAdd));
