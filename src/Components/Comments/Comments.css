@@ -15,6 +15,8 @@
     margin-bottom: 30px;
 }
 
+
+
 .comments_comm {
     display: flex;
     width: 30%;
@@ -27,6 +29,16 @@
     flex-direction: column;
     height: 90px;
     /* margin-bottom: 30px; */
+}
+
+.comments_add {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 30px;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
 }
 
 .speech-bubble {

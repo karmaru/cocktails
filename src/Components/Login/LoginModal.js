@@ -9,9 +9,12 @@ export default class LoginModal extends Component{
     
 
     render() {
+      
         return (
           <Modal
             {...this.props}
+            onHide={this.props.onHide}
+            logfinished= {this.props.logfinished}
             size="sm"
             aria-labelledby="contained-modal-title-vcenter"
             centered
@@ -23,7 +26,7 @@ export default class LoginModal extends Component{
             </Modal.Header>
             <Modal.Body>
               <div className='container'>
-                  <Login onHide={this.props.onHide} logFinished={this.props.logFinished}/>
+                  <Login onHide={this.props.onHide} logfinished={this.props.logfinished}/>
               </div>
             </Modal.Body>
             <Modal.Footer>

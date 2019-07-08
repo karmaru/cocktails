@@ -36,7 +36,7 @@ class CommentAdd extends Component {
     axios
       .post("/comments/create", {comment, idDrink, user_id})
       .then(
-        this.props.flipUpdate()
+        this.props.flipupdate()
     )
     .then(
       this.props.logFinished()

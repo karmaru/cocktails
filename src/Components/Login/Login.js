@@ -30,7 +30,7 @@ class Login extends Component {
         this.props.updateUser(res.data);
       })
       .then(
-        this.props.logFinished()
+        this.props.logfinished()
         )
       .catch(err => {
         // console.log('2222222', err)

@@ -75,7 +75,7 @@ input1.addEventListener("keydown", event => {
              style={{display: 'flex',align: 'left', justifyContent: 'flex-start'}}
              >
             <img className='logo_Hdr' src={martini} alt=''/>
-            <span className='title_Hdr'>Liquor Lab</span>
+            <span className='title_Hdr'>etherDrinks</span>
             </div>
               <div className='search_Hdr'>  
               <input className='input_Hdr'

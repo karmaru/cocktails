@@ -31,7 +31,7 @@ class Register extends Component {
         this.props.updateUser(res.data)
       })
       .then(
-        this.props.logFinishedReg()
+        this.props.logfinishedReg()
           )
         // this.props.history.push("/dashboard")
       .catch(err => {

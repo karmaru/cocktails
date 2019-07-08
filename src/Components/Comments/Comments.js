@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import './Comments.css'
 import axios from 'axios'
-import {Link, withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import { connect } from "react-redux";
 import { updateUser } from "../../redux/auth_reducer";
 import { updateDrink } from "../../redux/cocktail_reducer";
@@ -69,8 +69,8 @@ async componentDidUpdate(previousProps, previousState) {
 
 
   render () {
-    let flipUpdate = () => {
-      // console.log('flip update invoked', this.state)
+    let flipupdate = () => {
+      console.log('flip update invoked', this.state)
       this.setState({
         update: !this.state.update,
         updateAdd: !this.state.updateAdd
@@ -96,7 +96,7 @@ async componentDidUpdate(previousProps, previousState) {
         
       })
       .then(
-        flipUpdate()
+        flipupdate()
     )
     };
 
@@ -107,8 +107,8 @@ async componentDidUpdate(previousProps, previousState) {
     <div style={{fontFamily: 'Lobster Two', fontSize: '30px', margin: '20px', overflow: 'scroll'}}>
       <ButtonToolbar>
       <CommentsModalAdd className="openmodal"
-            show={this.state.addModalComment} onHide={addModalClose} logFinished={postFinished} flipUpdate={flipUpdate} deleteComment={deleteComment}/>
-            <div classname='commentsAdd'>
+            show={this.state.addModalComment} onHide={addModalClose} logFinished={postFinished} flipUpdate={flipupdate} deleteComment={deleteComment}/>
+            <div className='comments_add'>
             <h4>Comments</h4>
             <button className='button' onClick={() => this.setState({addModalComment: true})}>Add Comments</button>
             </div>
@@ -120,7 +120,7 @@ async componentDidUpdate(previousProps, previousState) {
         // console.log('comments compare',this.props.id,posts.user_id, posts )
         if (this.props.id === posts.user_id) { 
         return (
-          <ButtonToolbar>
+          <ButtonToolbar key={posts.post_id}>
             <div className='comment_comm'>
               <div className='comments_comm'>
                   <img style={styles.img_comm} src={posts.avatar} alt=''/>
@@ -135,7 +135,7 @@ async componentDidUpdate(previousProps, previousState) {
             <button  style={styles.btn} onClick={() => this.setState({addModalShow: true})}>edit</button>
 
             <CommentsModal className="openmodal"
-            show={this.state.addModalShow} onHide={addModalClose} logFinished={postFinished} userId={posts.user_id} postId={posts.post_id} drinkId={posts.drink_id} comment={posts.comment} flipUpdate={flipUpdate} deleteComment={deleteComment}/>
+            show={this.state.addModalShow} onHide={addModalClose} logFinished={postFinished} userId={posts.user_id} postId={posts.post_id} drinkId={posts.drink_id} comment={posts.comment} flipupdate={flipupdate} deleteComment={deleteComment}/>
 
             <button  style={styles.btn} onClick={() => deleteComment(posts.post_id, posts.drink_id)}>delete</button>
 
@@ -145,7 +145,7 @@ async componentDidUpdate(previousProps, previousState) {
         )
     } else 
     return (
-        <div>
+        <div key={posts.post_id}>
             <div className='comment_comm'>
                 <div className='comments_comm'>
                 <img style={styles.img_comm} src={posts.avatar} alt=''/>

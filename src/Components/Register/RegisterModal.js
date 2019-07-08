@@ -10,7 +10,7 @@ export default class RegisterModal extends Component{
     render() {
         return (
           <Modal
-            {...this.props}
+            // {...this.props}
             size="sm"
             aria-labelledby="contained-modal-title-vcenter"
             centered
@@ -22,7 +22,7 @@ export default class RegisterModal extends Component{
             </Modal.Header>
             <Modal.Body>
               <div className='container'>
-                  <Register onHide={this.props.onHide} logFinishedReg={this.props.logFinishedReg}/>
+                  <Register onHide={this.props.onHide} logfinishedReg={this.props.logfinishedReg}/>
               </div>
             </Modal.Body>
             <Modal.Footer>

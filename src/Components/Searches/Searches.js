@@ -64,7 +64,7 @@ async componentDidUpdate(previousProps) {
             cocktails: res.data.drinks
             })
         })} 
-        else if (check == -1) {
+        else if (check === -1) {
             await axios.get(`https://www.thecocktaildb.com/api/json/v2/8673533/filter.php?i=${this.props.search}`).then(res => {
             this.setState({
             cocktails: res.data.drinks

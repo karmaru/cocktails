@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import './Splash.css'
-import martini from '../../Images/martini_logo.png'
 import LoginModal from '../Login/LoginModal'
 import RegisterModal from '../Register/RegisterModal'
 import {ButtonToolbar} from 'react-bootstrap'
@@ -22,15 +21,15 @@ render() {
   let addModalClose = () => this.setState({addModalShow: false})
   let addModalCloseReg = () => {this.setState({addModalShowReg: false})}
 
-  let logFinished = () => 
+  let logfinished = () => 
   {
     this.setState({addModalShow: false})
     this.props.history.push("/dashboard");
   }
 
-  let logFinishedReg = () => 
+  let logfinishedReg = () => 
   {
-    this.setState({addModalShow: false})
+    this.setState({addModalShowReg: false})
     this.props.history.push("/dashboard");
   }
 
@@ -39,17 +38,18 @@ render() {
     <ButtonToolbar>  
     <div className='wrap_Spl'>
       <div>
-        <img className='splashImg' src={martini} alt=''/>
+        <img className='splashImg' src='https://todds-s3-bucket-for-class.s3-us-west-1.amazonaws.com/martini_logo.2d2a44d7.png' alt=''/>
         </div>
         <LoginModal className="openmodal"
-            show={this.state.addModalShow} onHide={addModalClose} logFinished={logFinished}/>
+            show={this.state.addModalShow} onHide={addModalClose} logfinished={logfinished}/>
         <RegisterModal className="openmodal"
-            show={this.state.addModalShowReg} onHide={addModalCloseReg} logFinishedReg={logFinishedReg}/>
+            show={this.state.addModalShowReg} onHide={addModalCloseReg} logfinishedReg={logfinishedReg}/>
         <div>  
         <div className='logItems_Spl'>
           <button className='button_Spl' onClick={() => this.setState({addModalShowReg: true})}>Register</button>
           <h1 style={{fontFamily: 'Lobster Two', fontSize: '30px'}}>or</h1>
           <button className='button_Spl' onClick={() => this.setState({addModalShow: true})}>Login</button>
+          
         </div>
       </div>
     </div>
