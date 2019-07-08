@@ -67,6 +67,18 @@
     border-radius: 10px;
 }
 
+.commentsAdd{
+    display: flex;
+    width: 40%;
+    flex-direction: row;
+    border: 1px solid black;
+    box-shadow: 0px 30px 40px rgba(0,0,0,.4);
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    height: 90px;
+}
+
 
 @media screen and (max-width: 950px) {
 

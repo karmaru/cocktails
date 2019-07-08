@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { addComment } from "../../redux/cocktail_reducer";
+import './CommentsAdd.css'
 
 class CommentAdd extends Component {
   constructor() {
@@ -34,6 +35,12 @@ class CommentAdd extends Component {
     // console.log('this.state from commentadd', this.state)
     axios
       .post("/comments/create", {comment, idDrink, user_id})
+      .then(
+        this.props.flipUpdate()
+    )
+    .then(
+      this.props.logFinished()
+      )
       .then(res => {
           // console.log('set comments commentadd', res.data)
           this.props.history.push("/dashboard")
@@ -59,8 +66,8 @@ class CommentAdd extends Component {
     // console.log('props from commentsUpdate', this.state)
     return (
       <div>
-        <h1>Register</h1>
-        <input
+        <h1>Add Comment</h1>
+        <input style={{width: '200px', marginRight: '20px'}}
           type="text"
           placeholder="Drink Comment"
           name="comment"

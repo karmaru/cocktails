@@ -61,8 +61,8 @@ class CommentsUpdate extends Component {
     // console.log('from passed props commentsupdate', this.props, this.state)
     return (
       <div>
-        <h1>Comment</h1>
-        <input style={{width: '40vw'}}
+        {/* <h1>Comment</h1> */}
+        <input style={{width: '50vw', marginRight: '10px'}}
           type="text"
           placeholder="Comment"
           name="comment"

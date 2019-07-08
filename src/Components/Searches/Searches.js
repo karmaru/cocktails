@@ -51,7 +51,7 @@ async componentDidUpdate(previousProps) {
     let grammarFunc = (str) => {
         return str.split(' ').map(sen => sen.charAt(0).toUpperCase() + sen.slice(1)).join(',')
       }
-
+    console.log('search compare', previousProps.search)
     if (previousProps.search !== this.props.search) { 
         let combine = grammarFunc(this.props.search)
         console.log('combine', this.props,combine)
@@ -64,12 +64,15 @@ async componentDidUpdate(previousProps) {
             cocktails: res.data.drinks
             })
         })} 
-        else {
-            await axios.get(`https://www.thecocktaildb.com/api/json/v2/8673533/search.php?s=${this.props.search}`).then(res => {
+        else if (check == -1) {
+            await axios.get(`https://www.thecocktaildb.com/api/json/v2/8673533/filter.php?i=${this.props.search}`).then(res => {
             this.setState({
             cocktails: res.data.drinks
             })
         })
+        }
+        else {
+            alert('Your search returned no results')
         }
     }}
 

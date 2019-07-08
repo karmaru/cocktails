@@ -7,6 +7,7 @@ import { updateUser } from "../../redux/auth_reducer";
 import { updateDrink } from "../../redux/cocktail_reducer";
 import {ButtonToolbar, } from 'react-bootstrap'
 import CommentsModal from './CommentsModal'
+import CommentsModalAdd from './CommentsModalAdd'
 
 
 
@@ -22,7 +23,9 @@ class Comments extends Component {
       drink_name: '',  
       comments: [],
       addModalShow: false,
-      update: false
+      updateAdd: false,
+      update: false,
+      addModalComment: false
     }
 
   }
@@ -47,7 +50,8 @@ async componentDidUpdate(previousProps, previousState) {
       // console.log('res from comments call', res.data, this.state)
       this.setState({
       comments: res.data,
-      update: false
+      update: false,
+      updateAdd: false
       });
   })
   .catch(err => console.log('error fetching comments:', err))
@@ -68,13 +72,19 @@ async componentDidUpdate(previousProps, previousState) {
     let flipUpdate = () => {
       // console.log('flip update invoked', this.state)
       this.setState({
-        update: !this.state.update
+        update: !this.state.update,
+        updateAdd: !this.state.updateAdd
       })};
     
-    let addModalClose = () => this.setState({addModalShow: false})
+    let addModalClose = () => this.setState({
+      addModalShow: false,
+      addModalComment: false})
+
     let postFinished = () => 
     {
-      this.setState({addModalShow: false})
+      this.setState({
+        addModalShow: false,
+      addModalComment: false})
       this.props.history.push("/dashboard");
     }
 
@@ -95,10 +105,14 @@ async componentDidUpdate(previousProps, previousState) {
     return (
     
     <div style={{fontFamily: 'Lobster Two', fontSize: '30px', margin: '20px', overflow: 'scroll'}}>
-      <div style={styles.head_comm}>
-        <h4>User Comments</h4>
-        <Link to='/postComment' ><button className='button'>Add Comment</button></Link> 
-      </div>  
+      <ButtonToolbar>
+      <CommentsModalAdd className="openmodal"
+            show={this.state.addModalComment} onHide={addModalClose} logFinished={postFinished} flipUpdate={flipUpdate} deleteComment={deleteComment}/>
+            <div classname='commentsAdd'>
+            <h4>Comments</h4>
+            <button className='button' onClick={() => this.setState({addModalComment: true})}>Add Comments</button>
+            </div>
+      </ButtonToolbar>
         
             <hr/>
           

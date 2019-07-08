@@ -4,7 +4,8 @@ const initialState = {
     rating: 0,
     comments: '',
     search: '',
-    comment: ''
+    comment: '',
+    loading: false
   };
   
   const UPDATE_DRINK = "UPDATE_DRINK";

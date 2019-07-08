@@ -62,9 +62,11 @@ class Login extends Component {
     //   return <Redirect to="/dashboard" />;
     // }
     return (
-      <div>
-        <h1>Login</h1>
+      <div style={styles.input}>
+        {/* <h1>Login</h1> */}
+        <h3 style={styles.text1}>User Name: </h3>
         <input
+          
           type="text"
           placeholder="User Name"
           name="name"
@@ -78,14 +80,16 @@ class Login extends Component {
           onChange={this.handleInput}
           value={this.state.email}
         /> */}
+        <h3 style={styles.text1}>Password: </h3>
         <input
+          
           type="password"
           placeholder="Password"
           name="password"
           onChange={this.handleInput}
           value={this.state.password}
         />
-        <button onClick={() => this.login()}>Login</button>
+        <button style={styles.button} onClick={() => this.login()}>Login</button>
 
       </div>
     );
@@ -103,3 +107,34 @@ export default withRouter(connect(
   mapStateToProps,
   { updateUser }
 )(Login));
+
+let styles = {
+  text1: {
+    fontFamily: 'Lobster Two',
+    fontSize: '15px',
+    margin: '10px'
+  },
+  input: {
+    display: 'flex',
+    // justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'column',
+    fontFamily: 'Lobster Two',
+    fontSize: '15px',
+    margin: '10px'
+  },
+  button: {
+    display: 'flex',
+    // justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    fontFamily: 'Lobster Two',
+    fontSize: '15px',
+    height: '22px',
+    width: '40px',
+    lineHeight: '15px',
+    margin: '10px',
+    borderRadius: '10px',
+    justifyContent: 'center'
+  }
+}

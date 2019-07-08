@@ -1,0 +1,11 @@
+.button {
+    color: black;
+    text-decoration: none;
+    font-family: Lobster Two;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    width: 120px;
+    border-radius: 10px;
+}

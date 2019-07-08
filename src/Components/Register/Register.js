@@ -36,7 +36,7 @@ class Register extends Component {
         // this.props.history.push("/dashboard")
       .catch(err => {
         if (err === 409){
-        alert("User Already Exist Try Logging IN")}
+        alert("User Already Exist Try Logging In")}
         else {
           alert('you are too young')
         }
@@ -50,8 +50,8 @@ class Register extends Component {
     //   return <Redirect to="/dashboard" />;
     // }
     return (
-      <div>
-        <h1>Register</h1>
+      <div style={styles.input}>
+        <h3 style={styles.text1}>User Name: </h3>
         <input
           type="text"
           placeholder="User Name"
@@ -59,6 +59,7 @@ class Register extends Component {
           onChange={this.handleInput}
           value={this.state.name}
         />
+        <h3 style={styles.text1}>Email: </h3>
         <input
           type="text"
           placeholder="Email"
@@ -66,6 +67,7 @@ class Register extends Component {
           onChange={this.handleInput}
           value={this.state.email}
         />
+        <h3 style={styles.text1}>Birth Date: </h3>
         <input
           type="date"
           placeholder="Birthdate"
@@ -73,6 +75,7 @@ class Register extends Component {
           onChange={this.handleInput}
           value={this.state.birthdate}
         />
+        <h3 style={styles.text1}>Password: </h3>
         <input
           type="password"
           placeholder="Password"
@@ -80,6 +83,7 @@ class Register extends Component {
           onChange={this.handleInput}
           value={this.state.password}
         />
+        <h3 style={styles.text1}>Avatar URL: </h3>
         <input
           type="text"
           placeholder="Avatar URL"
@@ -87,7 +91,7 @@ class Register extends Component {
           onChange={this.handleInput}
           value={this.state.avatar}
         />
-        <button onClick={() => this.register()}>Register</button>
+        <button style={styles.button} onClick={() => this.register()}>Register</button>
         
       </div>
     );
@@ -106,3 +110,34 @@ export default connect(
   mapStateToProps,
   { updateUser }
 )(Register);
+
+let styles = {
+  text1: {
+    fontFamily: 'Lobster Two',
+    fontSize: '15px',
+    margin: '10px'
+  },
+  input: {
+    display: 'flex',
+    // justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'column',
+    fontFamily: 'Lobster Two',
+    fontSize: '15px',
+    margin: '10px'
+  },
+  button: {
+    display: 'flex',
+    // justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    fontFamily: 'Lobster Two',
+    fontSize: '15px',
+    height: '25px',
+    width: '55px',
+    lineHeight: '15px',
+    margin: '10px',
+    borderRadius: '10px',
+    justifyContent: 'center'
+  }
+}
