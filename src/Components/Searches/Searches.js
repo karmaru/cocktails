@@ -37,9 +37,9 @@ console.log('check', check)
 
 if (check === -1) {
     await axios.get(`https://www.thecocktaildb.com/api/json/v2/8673533/filter.php?i=${this.props.search}`).then(res => {
-        this.setState({
-        cocktails: res.data.drinks
-    })
+        Array.isArray(res.data.drinks) ? this.setState({
+            cocktails: res.data.drinks
+            }):alert('Please enter a valid search')
 })} else if (check !== -1){
         // await axios.get(`https://www.thecocktaildb.com/api/json/v2/8673533/filter.php?i=${this.props.search}`).then(res => {
         //     this.setState({
@@ -63,9 +63,9 @@ async componentDidUpdate(previousProps) {
         if (check !== -1) {
             // https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Dry_Vermouth,Gin,Anis
             await axios.get(`https://www.thecocktaildb.com/api/json/v2/8673533/filter.php?i=${this.props.search}`).then(res => {
-            this.setState({
-            cocktails: res.data.drinks
-            })
+                Array.isArray(res.data.drinks) ? this.setState({
+                    cocktails: res.data.drinks
+                    }):alert('Please enter a valid search')
         }).catch(err => {
             alert("Please enter a valid search");
           })} 
@@ -73,7 +73,7 @@ async componentDidUpdate(previousProps) {
             await axios.get(`https://www.thecocktaildb.com/api/json/v2/8673533/filter.php?i=${this.props.search}`).then(res => {
                 Array.isArray(res.data.drinks) ? this.setState({
             cocktails: res.data.drinks
-            }):alert('testing alert')
+            }):alert('Please enter a valid search')
         }).catch(err => {
             alert("Please enter a valid search");
           })
