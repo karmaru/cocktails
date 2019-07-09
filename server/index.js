@@ -4,7 +4,7 @@ const massive = require('massive')
 const session = require('express-session')
 
 const app = express()
-
+app.use( express.static( `${__dirname}/../build` ) );
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env
 

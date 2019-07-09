@@ -26,7 +26,9 @@ await axios.get('https://www.thecocktaildb.com/api/json/v2/8673533/list.php?i=li
     this.setState({
         ingredients: res.data.drinks
     })
-})
+}).catch(err => {
+    alert("Please enter a valid search");
+  })
 
 
 
@@ -44,9 +46,7 @@ if (check === -1) {
         //         cocktails: res.data.drinks
         //     })
         //     })
-        } else {
         alert('That search returned no results')
-
         }
 }
 
@@ -66,16 +66,17 @@ async componentDidUpdate(previousProps) {
             this.setState({
             cocktails: res.data.drinks
             })
-        })} 
-        else if (check === -1) {
+        }).catch(err => {
+            alert("Please enter a valid search");
+          })} 
+        else if (check === -1 ) {
             await axios.get(`https://www.thecocktaildb.com/api/json/v2/8673533/filter.php?i=${this.props.search}`).then(res => {
-            this.setState({
+                Array.isArray(res.data.drinks) ? this.setState({
             cocktails: res.data.drinks
-            })
-        })
-        }
-        else {
-            alert('Your search returned no results')
+            }):alert('testing alert')
+        }).catch(err => {
+            alert("Please enter a valid search");
+          })
         }
     }}
 

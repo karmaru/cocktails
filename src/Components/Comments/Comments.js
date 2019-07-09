@@ -111,7 +111,7 @@ async componentDidUpdate(previousProps, previousState) {
             <div classname='commentsAdd'>
             <h4>Comments</h4>
             
-            <button className='button' onClick={() => this.setState({addModalComment: true})}>Add Comments</button>
+            <button className='button2' onClick={() => this.setState({addModalComment: true})}>Add Comments</button>
             </div>
       </ButtonToolbar>
         

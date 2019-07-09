@@ -111,7 +111,7 @@ function mapStateToProps(state) {
 export default withRouter(connect(
   mapStateToProps,
   // state => state,
-  { updateDrink }
+  { updateDrink}
 )(Header));
 
 
